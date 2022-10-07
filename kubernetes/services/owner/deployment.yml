@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owner
+  labels:
+    app: owner
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: owner
+      labels:
+        app: owner
+    spec:
+      containers:
+        - name: owner
+          image: finityex/owner:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: owner
