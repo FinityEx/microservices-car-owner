@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface OwnerClient {
 
     @GetMapping(path = "/api/owner/{licensePlate}")
-    OwnerCheckResponse checkOwner(@PathVariable("licensePlate") Integer licensePlate);
+    public OwnerCheckResponse checkOwner(@PathVariable("licensePlate") Integer licensePlate);
 }

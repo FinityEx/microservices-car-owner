@@ -1,30 +1,25 @@
-package com.wj.car;
+package com.wj.confirmation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
-
+@EnableEurekaClient
 @SpringBootApplication(
         scanBasePackages = {
-                "com.wj.car",
+                "com.wj.confirmation",
                 "com.wj.messageqs"
         }
-)
-@EnableEurekaClient
-@EnableFeignClients(
-        basePackages = "com.wj.clients"
 )
 @PropertySources(
         {
                 @PropertySource("classpath:clients-${spring.profiles.active}.properties")
         }
 )
-public class CarApplication {
+public class ConfirmationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CarApplication.class, args);
+        SpringApplication.run(ConfirmationApplication.class, args);
     }
 }

@@ -17,7 +17,7 @@ public class CarController {
 
     @PostMapping
     public void register(@RequestBody CarRegistrationForm form){
-        log.info("Registered car with license plate: {}", form.licensePlate());
         carService.registerCar(form);
+        log.info("Registered car with license plate: {}", form.licensePlate());
     }
 }

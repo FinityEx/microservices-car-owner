@@ -21,10 +21,10 @@ public class OwnerController {
         return new OwnerCheckResponse(carOwner);
     }
 
-//    @PostMapping(path = "/register")
-//    public void register(@RequestBody OwnerForm ownerForm){
-//        ownerService.registerOwner(ownerForm);
-//        log.info("Successfully registered new owner for license plate: {}",
-//                ownerForm.licensePlate());
-//    }
+    @PostMapping(path = "/register")
+    public void register(@RequestBody OwnerForm ownerForm){
+        ownerService.registerOwner(ownerForm);
+        log.info("Successfully registered new owner for license plate: {}",
+                ownerForm.licensePlate());
+    }
 }

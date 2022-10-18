@@ -3,8 +3,8 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
+#      POSTGRES_USER:
+#      POSTGRES_PASSWORD:
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -34,6 +34,14 @@ services:
       - "9411:9411"
     networks:
       - spring
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring
 #  eureka-server:
 #    image: finityex/eureka-server:latest
 #    container_name: eureka-server
@@ -58,6 +66,8 @@ services:
     depends_on:
       - zipkin
       - postgres
+      - rabbitmq
+
   owner:
     image: finityex/owner:latest
     container_name: owner
@@ -71,6 +81,20 @@ services:
     depends_on:
       - zipkin
       - postgres
+
+  confirmation:
+    image: finityex/confirmation:latest
+    container_name: confirmation
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - rabbitmq
+
 networks:
   postgres:
     driver: bridge

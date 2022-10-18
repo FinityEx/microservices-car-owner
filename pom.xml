@@ -13,6 +13,8 @@
     <module>owner</module>
       <module>eureka-server</module>
       <module>clients</module>
+    <module>confirmation</module>
+    <module>messageqs</module>
   </modules>
 
   <name>services</name>

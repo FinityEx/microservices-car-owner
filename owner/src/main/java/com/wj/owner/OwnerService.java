@@ -1,6 +1,6 @@
 package com.wj.owner;
 
-import com.sun.istack.NotNull;
+import com.wj.clients.owner.OwnerCheckResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class OwnerService {
         else return false;
     }
 
-    public void registerOwner(@NotNull OwnerForm form){
+    public void registerOwner(OwnerForm form){
         if(checkOwner(form.licensePlate()))
             throw new IllegalStateException("This car already has an owner!");
         else {

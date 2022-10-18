@@ -3,9 +3,10 @@ server:
 
 spring:
   application:
-    name: eureka
+    name: eureka-server
   zipkin:
     base-url: http://zipkin:9411
+
 
 eureka:
   client:

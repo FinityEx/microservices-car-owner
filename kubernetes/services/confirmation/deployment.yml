@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confirmation
+  labels:
+    app: confirmation
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: confirmation
+      labels:
+        app: confirmation
+    spec:
+      containers:
+        - name: confirmation
+          image: finityex/confirmation:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: confirmation
